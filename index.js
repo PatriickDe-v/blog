@@ -5,6 +5,8 @@ const express = require("express")
 const app = express()
 //constante do body-parser
 const bodyParser = require("body-parser")
+//importando a conexão com banco de dados
+const connection = require("./database/database")
 
 //view engine
 app.set('view engine', 'ejs')
@@ -13,10 +15,20 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 
-
 //configuração do body-parser
-app.use(bodyParser.urlencoded({extendes: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+//database
+connection
+    .authenticate()         //autenticação 
+    .then(() => {
+        console.log("Conexão feita com sucesso!")
+    }).catch((error) => {
+        console.log(error)
+    })
+    
+
 
 //rota padrão
 app.get("/", (req, res) => {
