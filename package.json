@@ -1,0 +1,26 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "blog completo com painel administrativo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatriickDe-v/blog.git"
+  },
+  "author": "Patrick Strassburger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PatriickDe-v/blog/issues"
+  },
+  "homepage": "https://github.com/PatriickDe-v/blog#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1",
+    "sequelize": "^6.37.7"
+  }
+}
