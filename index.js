@@ -1,15 +1,25 @@
 //IMPORTAÇÕES
 //carrega o modulo do express
 const express = require("express")
+
 //cria uma instância do módulo express
 const app = express()
+
 //constante do body-parser
+
 const bodyParser = require("body-parser")
 //importando a conexão com banco de dados
 const connection = require("./database/database")
+
+
 //importação das rotas
 const categoriesController = require("./categories/CategoriesController")
 const articlesController = require("./articles/articlesController")
+
+//importação de models
+const Article = require("./articles/Article")
+const Category = require("./categories/Category")
+
 
 //view engine
 app.set('view engine', 'ejs')
