@@ -27,14 +27,34 @@ router.post("/categories/save", (req, res) => {
         res.redirect("/admin/categories/new")
     }
 })
-
+//rota para listar as categorias
 router.get("/admin/categories", (req, res) => {
 
     Category.findAll().then(categories => {
         res.render("admin/categories/index",
-            {categories: categories}
+            { categories: categories }
         )
     })
 })
 
+router.post("/categories/delete", (req, res) => {
+    let id = req.body.id
+    if (id != undefined) {
+        if (!isNaN(id)) {
+                //apagar uma categoria que tem o id igual ao id passado
+            Category.destroy({
+                where: {
+                    id: id 
+                }
+            }).then(() => {
+                res.redirect("/admin/categories")
+            })
+
+        } else { //Não for um número
+            res.redirect("/admin/categories")
+        }
+    } else { //se for null
+        res.redirect("/admin/categories")
+    }
+})
 module.exports = router
