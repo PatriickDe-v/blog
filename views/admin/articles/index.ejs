@@ -19,21 +19,28 @@
                 <tbody>
                     <% articles.forEach(article=> { %>
                         <tr>
-                        <td>
-                            <%= article.id %>
-                        </td>
-                        <td>
-                            <%= article.title %>
-                        </td>
-                        <td>
-                            <%= article.slug %>
-                        </td>
-                        <td>
-                            <%= article.category.title %>
-                        </td>
-                        <td>Ações</td>
-                        <% }) %>
+                            <td>
+                                <%= article.id %>
+                            </td>
+                            <td>
+                                <%= article.title %>
+                            </td>
+                            <td>
+                                <%= article.slug %>
+                            </td>
+                            <td>
+                                <%= article.category.title %>
+                            </td>
+                            <td>
+                                <form method="POST" action="/articles/delete" style="display: inline;"
+                                    onsubmit=" confirmarDelecao(event, this)">
+                                    <input type="hidden" name="id" value="<%= article.id %>">
+                                    <button class="btn btn-danger">Deletar</button>
+                                </form>
+                            </td>
+                            <% }) %>
                         </tr>
+
                 </tbody>
             </table>
         </div>
@@ -42,7 +49,7 @@
             <script>
                 function confirmarDelecao(event, form) {
                     event.preventDefault()
-                    let decision = confirm("Você quer deletar essa categoria?")
+                    let decision = confirm("Você quer deletar esse artigo?")
                     if (decision) {
                         form.submit()
                     }

@@ -16,9 +16,9 @@ const slugify = require("slugify")
 //rota de categorias
 router.get("/admin/articles", (req, res) => {
     Article.findAll({
-        include: [{model: Category}]
+        include: [{ model: Category }]
     }).then(articles => {
-        res.render("admin/articles/index", {articles: articles})
+        res.render("admin/articles/index", { articles: articles })
     })
 })
 
@@ -44,5 +44,26 @@ router.post("/articles/save", (req, res) => {
     })
 })
 
+
+router.post("/articles/delete", (req, res) => {
+    let id = req.body.id
+    if (id != undefined) {
+        if (!isNaN(id)) {
+            //apagar uma categoria que tem o id igual ao id passado
+            Article.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect("/admin/articles")
+            })
+
+        } else { //Não for um número
+            res.redirect("/admin/articles")
+        }
+    } else { //se for null
+        res.redirect("/admin/articles")
+    }
+})
 
 module.exports = router
