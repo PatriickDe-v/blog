@@ -2,6 +2,8 @@
 const express = require("express")
 //objeto que será utilizado para criar as rotas
 const router = express.Router()
+//carregando model de categorias
+const Category = require("../categories/Category")
 
 //rota de categorias
 router.get("/articles", (req, res) => {
@@ -9,7 +11,9 @@ router.get("/articles", (req, res) => {
 })
 
 router.get("/admin/articles/new", (req, res) => {
-    res.render("admin/articles/new")
+    Category.findAll().then(categories => {
+        res.render("admin/articles/new", { categories: categories })
+    })
 })
 
 
