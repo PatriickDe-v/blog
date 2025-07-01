@@ -15,7 +15,7 @@ const slugify = require("slugify")
 
 //rota de categorias
 router.get("/admin/articles", (req, res) => {
-    res.send("ROTA DE ARTIGOS")
+    res.render("admin/articles/index")
 })
 
 router.get("/admin/articles/new", (req, res) => {
