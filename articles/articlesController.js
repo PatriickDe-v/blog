@@ -8,6 +8,10 @@ router.get("/articles", (req, res) => {
     res.send("ROTA DE ARTIGOS")
 })
 
+router.get("/admin/articles/new", (req, res) => {
+    res.render("admin/articles/new")
+})
+
 
 
 module.exports = router
