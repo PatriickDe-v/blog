@@ -4,9 +4,17 @@ const express = require("express")
 const router = express.Router()
 //carregando model de categorias
 const Category = require("../categories/Category")
+//carregando artigos
+const Article = require("./Article")
+//carregando slug
+const slugify = require("slugify")
+
+
+
+
 
 //rota de categorias
-router.get("/articles", (req, res) => {
+router.get("/admin/articles", (req, res) => {
     res.send("ROTA DE ARTIGOS")
 })
 
@@ -16,6 +24,21 @@ router.get("/admin/articles/new", (req, res) => {
     })
 })
 
+//rota para salvar os artigos no banco de dados
+router.post("/articles/save", (req, res) => {
+    let title = req.body.title
+    let body = req.body.body
+    let category = req.body.category
+
+    Article.create({
+        title: title,
+        slug: slugify(title),
+        body: body,
+        categoryId: category
+    }).then(() => {
+        res.redirect("/admin/articles")
+    })
+})
 
 
 module.exports = router
