@@ -16,7 +16,9 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     <% categories.forEach(category=> { %>
+                        <tr>
                         <th>
                             <%= category.id %>
                         </th>
@@ -26,14 +28,16 @@
                         <th>
                             <%= category.slug %>
                         </th>
-                        <th>
-                            <button class="btn btn-warning">Editar</button>
 
-                            <form method="POST" action="/categories/delete" style="display: inline" onsubmit="confirmarDelecao(event, this)">
+                        <th>
+                            <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning">Editar</a>
+
+                            <form method="POST" action="/categories/delete" style="display: inline;" onsubmit=" confirmarDelecao(event, this)">
                                 <input type="hidden" name="id" value="<%= category.id %>">
                                 <button class="btn btn-danger">Deletar</button>
                             </form>
                         </th>
+                        </tr>
                         <% }) %>
                 </tbody>
             </table>
@@ -44,7 +48,7 @@
                 function confirmarDelecao(event, form) {
                     event.preventDefault()
                     let decision = confirm("Você quer deletar essa categoria?")
-                    if(decision ) {
+                    if (decision) {
                         form.submit()
                     }
                 }
