@@ -44,7 +44,7 @@ router.post("/articles/save", (req, res) => {
     })
 })
 
-
+//rota para deletear artigos
 router.post("/articles/delete", (req, res) => {
     let id = req.body.id
     if (id != undefined) {
@@ -66,7 +66,7 @@ router.post("/articles/delete", (req, res) => {
     }
 })
 
-
+//rota para editar artigos
 router.get("/admin/articles/edit/:id", (req, res) => {
     let id = req.params.id
     Article.findByPk(id).then(article => {
@@ -84,4 +84,26 @@ router.get("/admin/articles/edit/:id", (req, res) => {
     })
 })
 
+//rota para salvar artigos editados
+router.post("/articles/update", (req, res) => {
+    let id = req.body.id
+    let title = req.body.title
+    let body = req.body.body
+    let category = req.body.category
+
+    Article.update({
+        title: title,
+        body: body,
+        categoryId: category,
+        slug: slugify(title)
+    }, {
+        where: {
+            id: id
+        }
+    }).then(() => {
+        res.redirect("/admin/articles")
+    }).catch(err => {
+        res.redirect("/")
+    })
+})
 module.exports = router
