@@ -80,6 +80,30 @@ app.get("/:slug", (req, res) => {
     })
 })
 
+//rota para pesquisar uma categoria pelo seu slug
+app.get("/category/:slug", (req, res) => {
+    let slug = req.params.slug
+    Category.findOne({
+        where: {
+            slug: slug
+        },
+        include: [{model: Article}]
+    }).then(category => {
+        if(category != undefined) {
+
+            Category.findAll().then(categories => {
+                res.render('index', {articles: category.articles, categories: categories})
+            })
+
+        }else {
+            res.redirect("/")
+        }
+    }).catch(err => {
+        res.redirect("/")
+    })
+})
+
+
 //inicia a aplicação com esse método
 app.listen(8080, () => {
     console.log("O servidor está rodando")
