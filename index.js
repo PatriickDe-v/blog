@@ -53,6 +53,23 @@ app.get("/", (req, res) => {
     })
 })
 
+//rota para buscar o slug do artigo
+app.get("/:slug", (req, res) => {
+    let slug = req.params.slug
+    Article.findOne({
+        where: {
+            slug: slug
+        }
+    }).then(article => {
+        if(article != undefined) {
+            res.render("article", {article: article})
+        }else {
+            res.redirect("/")
+        }
+    }).catch(err => {
+        res.redirect("/")
+    })
+})
 
 //inicia a aplicação com esse método
 app.listen(8080, () => {
