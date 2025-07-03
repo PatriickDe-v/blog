@@ -13,7 +13,7 @@
                         <input class="form-control" type="text" name="title"
                             placeholder="Defina o título do artigo"><br>
                         <textarea class="form-control" placeholder="Escreva o artigo aqui" name="body"
-                            id="article"></textarea><br>
+                            id="article"><%- article.body %></textarea><br>
                         <label>Categoria</label>
                         <select name="category" class="form-control">
                             <% categories.forEach((category)=> { %>
@@ -35,13 +35,9 @@
             </div>
         </div>
 
-        <div id="content" style="display: none;">
-            <%- article.body %>
-        </div>
-
-
         <%- include('../../partials/footer.ejs') %>
             <script src="/tinymce/js/tinymce/tinymce.min.js"></script>
+
             <!-- Configurando TinyMCE-->
             <script>
                 tinymce.init({
@@ -62,8 +58,5 @@
                         'table',
                         'emoticons',
                     ],
-                    init_instance_callback: () => {
-                        tinymce.activeEditor.setContent(document.getElementById('content').innerHTML);
-                    }
                 })
             </script>
