@@ -15,10 +15,12 @@ const connection = require("./database/database")
 //importação das rotas
 const categoriesController = require("./categories/CategoriesController")
 const articlesController = require("./articles/articlesController")
+const userController = require("./user/usersController")
 
 //importação de models
 const Article = require("./articles/Article")
 const Category = require("./categories/Category")
+const User = require("./user/users")
 
 
 //view engine
@@ -44,6 +46,7 @@ connection
 
 app.use("/", categoriesController)
 app.use("/", articlesController)
+app.use("/", userController)
 
 //rota padrão
 app.get("/", (req, res) => {
