@@ -20,7 +20,7 @@ const userController = require("./user/usersController")
 //importação de models
 const Article = require("./articles/Article")
 const Category = require("./categories/Category")
-const User = require("./user/users")
+const User = require("./user/user")
 
 
 //view engine
