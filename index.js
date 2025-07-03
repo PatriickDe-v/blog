@@ -1,7 +1,8 @@
 //IMPORTAÇÕES
 //carrega o modulo do express
 const express = require("express")
-
+//carrega o modulo session do express
+const session = require("express-session")
 //cria uma instância do módulo express
 const app = express()
 
@@ -26,6 +27,13 @@ const User = require("./user/user")
 //view engine
 app.set('view engine', 'ejs')
 
+//sessions
+app.use(session({
+    secret: "qualquercoisa",
+    cookie: {maxAge: 30000000}
+}))
+
+
 //static
 app.use(express.static('public'))
 
@@ -47,6 +55,15 @@ connection
 app.use("/", categoriesController)
 app.use("/", articlesController)
 app.use("/", userController)
+
+
+app.get("/session", (req, res) => {
+    req.session.
+})
+
+app.get("/leitura", (req, res) => {
+
+})
 
 //rota padrão
 app.get("/", (req, res) => {
