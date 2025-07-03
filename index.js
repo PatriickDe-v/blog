@@ -57,13 +57,7 @@ app.use("/", articlesController)
 app.use("/", userController)
 
 
-app.get("/session", (req, res) => {
-    req.session.
-})
 
-app.get("/leitura", (req, res) => {
-
-})
 
 //rota padrão
 app.get("/", (req, res) => {
